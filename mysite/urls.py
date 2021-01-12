@@ -26,5 +26,5 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', show_main_page),
-    path('places/<int:post_id>/', show_place_page)
+    path('places/<int:post_id>/', show_place_page, name = "place-page")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -16,7 +16,7 @@ def show_place_page(request, post_id):
 
     place_data = {
         "title": place.title,
-        "imgs":[images_url],
+        "imgs":images_url,
         "description_short": place.description_short,
         "description_long": place.description_long,
         "coordinates": {
@@ -25,4 +25,6 @@ def show_place_page(request, post_id):
         }
     }
 
-    return JsonResponse(place_data, safe=False, json_dumps_params={'ensure_ascii': False, 'indent': 2})
+    return JsonResponse(place_data,
+                        safe=False,
+                        json_dumps_params={'ensure_ascii': False, 'indent': 2})
