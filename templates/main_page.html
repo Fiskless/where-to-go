@@ -52,32 +52,7 @@
   <script id="places-geojson" type="application/json">
     {
       "type": "FeatureCollection",
-      "features": [
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": {{ coordinates.moscow_legends }}
-          },
-          "properties": {
-            "title":  "{{title.0}}",
-            "placeId": "{{place_id.0}}",
-            "detailsUrl": "{% static 'places/moscow_legends.json' %}"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": {{ coordinates.roofs24 }}
-          },
-          "properties": {
-            "title": "{{title.1}}",
-            "placeId": "{{place_id.1}}",
-            "detailsUrl": "{% static 'places/roofs24.json' %}"
-          }
-        }
-      ]
+      "features": {{ data|safe }}
     }
   </script>
 

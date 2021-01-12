@@ -16,12 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.http import HttpResponse
-from mysite import views
+from .views import show_main_page
+from places.views import show_place_page
+
 from django.conf.urls.static import static
 from django.conf import settings
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.show_main_page),
+    path('', show_main_page),
+    path('places/<int:post_id>/', show_place_page)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
