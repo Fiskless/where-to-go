@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from environs import Env
+from dotenv import load_dotenv
+
+
+load_dotenv()
+env = Env()
+env.read_env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,10 +27,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%^q8x@jd_nqlksp#(x&uno5b&0$#$5o&0p1m32gs^fhn)=txoe'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+DEBUG = env.bool("DEBUG")
 
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
@@ -80,7 +90,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, os.getenv("DATABASE_NAME")),
     }
 }
 
@@ -130,3 +140,15 @@ STATIC_ROOT = ''
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
+
+CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE")
+
+SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE")
+
+# SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT")
+
+# SECURE_HSTS_SECONDS = env.int("SECURE_HSTS_SECONDS")
+
+SECURE_HSTS_PRELOAD = env.bool("SECURE_HSTS_PRELOAD")
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool("SECURE_HSTS_INCLUDE_SUBDOMAINS")

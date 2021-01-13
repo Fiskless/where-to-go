@@ -1,7 +1,7 @@
 from django.contrib import admin
 from places.models import Place, Image
 from django.utils.safestring import mark_safe
-from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
+from adminsortable2.admin import SortableInlineAdminMixin
 
 # Register your models here.
 
