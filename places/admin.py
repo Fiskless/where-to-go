@@ -1,14 +1,15 @@
 from django.contrib import admin
 from places.models import Place, Image
 from django.utils.safestring import mark_safe
-from django.utils.html import format_html
+from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 
 # Register your models here.
 
-class ImageInline(admin.TabularInline):
+class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Image
+    extra = 0
     readonly_fields = ['get_preview']
-    fields = ('img', 'get_preview', 'picture_number', 'place')
+    fields = ('my_order', 'img', 'get_preview', 'place')
 
     def get_preview(self, obj):
 
@@ -18,6 +19,7 @@ class ImageInline(admin.TabularInline):
             height=200,
             )
         )
+
 
 
 @admin.register(Place)
