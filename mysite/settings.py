@@ -33,7 +33,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = os.getenv("SECRET_KEY", "%^q8x@jd_nqlksp#(x&uno5b&0$#$5o&0p1m32gs^fhn)=txoe")
 
-DEBUG = (os.getenv("DEBUG") == 'True')
+DEBUG = env.bool("DEBUG")
 
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
@@ -132,23 +132,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-STATIC_ROOT = '/home/Fiskless/fiskless.pythonanywhere.com/static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
 
-CSRF_COOKIE_SECURE = (os.getenv("CSRF_COOKIE_SECURE") == 'True')
-
-SESSION_COOKIE_SECURE = (os.getenv("SESSION_COOKIE_SECURE") == 'True')
-
-# SECURE_SSL_REDIRECT = (os.getenv("SECURE_SSL_REDIRECT") == 'True')
-
-SECURE_HSTS_SECONDS = (os.getenv("SECURE_HSTS_SECONDS"))
-
-SECURE_HSTS_PRELOAD = (os.getenv("SECURE_HSTS_PRELOAD") == 'True')
-
-SECURE_HSTS_INCLUDE_SUBDOMAINS = (os.getenv("SECURE_HSTS_INCLUDE_SUBDOMAINS") == 'True')
+# CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE")
+#
+# SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE")
+#
+# SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT")
+#
+# SECURE_HSTS_SECONDS = os.getenv("SECURE_HSTS_SECONDS")
+#
+# SECURE_HSTS_PRELOAD = env.bool("SECURE_HSTS_PRELOAD")
+#
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool("SECURE_HSTS_INCLUDE_SUBDOMAINS")

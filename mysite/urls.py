@@ -28,3 +28,5 @@ urlpatterns = [
     path('places/<int:post_id>/', show_place_page, name = "place-page"),
     path('tinymce/', include('tinymce.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
