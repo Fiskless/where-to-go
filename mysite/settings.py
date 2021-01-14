@@ -33,7 +33,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = env.bool("DEBUG")
+DEBUG = (os.getenv("DEBUG") == 'True')
 
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
@@ -145,7 +145,7 @@ CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE")
 
 SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE")
 
-SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT")
+# SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT")
 
 SECURE_HSTS_SECONDS = env.int("SECURE_HSTS_SECONDS")
 
