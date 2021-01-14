@@ -31,7 +31,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY", "%^q8x@jd_nqlksp#(x&uno5b&0$#$5o&0p1m32gs^fhn)=txoe")
 
 DEBUG = (os.getenv("DEBUG") == 'True')
 
