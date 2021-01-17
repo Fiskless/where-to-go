@@ -27,4 +27,4 @@ class Image(models.Model):
 
 
     def __str__(self):
-        return f'{self.picture_number} {self.place}'
+        return f'{self.place}'
