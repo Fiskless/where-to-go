@@ -1,9 +1,9 @@
 # Куда пойти — самые интересные места Москвы
 
 В данном проекте создана интерактивная карты Москвы, на которой указаны все известные 
-виды активного отдыха с подробными описаниями и комментариями, с точки зрение человека. 
+виды активного отдыха с подробными описаниями и комментариями, с точки зрения человека. 
 
-![Image alt](https://github.com/Fiskless/where-to-go/.gitbook/assets/home_page.png)
+![Image alt](https://github.com/Fiskless/where-to-go/blob/main/.gitbook/assets/home_page.png)
 
 [Действующая версия сайта](https://fiskless.pythonanywhere.com/)
 

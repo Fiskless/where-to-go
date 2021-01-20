@@ -1,17 +1,5 @@
-{% load static %}
-
-<!--<!DOCTYPE html>-->
-<!--<html >-->
-<!--<head>-->
-<!--    <title>Стартовая</title>-->
-<!--    <link rel="stylesheet" href="{% static 'leaflet-sidebar.css' %}">-->
-<!--</head>-->
-<!--<body>-->
-<!--    <h1>Здесь будет карта</h1>-->
-<!--</body>-->
-<!--</html>-->
-
 <!DOCTYPE html>
+{% load static %}
 <html lang="ru">
 <head>
   <meta charset="utf-8">
@@ -55,6 +43,10 @@
       "features": {{ data|safe }}
     }
   </script>
+<!--  {{ {-->
+<!--      "type": "FeatureCollection",-->
+<!--      "features": {{ data|safe }}-->
+<!--    }|json_script:"places-geojson" }}-->
 
   <script id="app-template" type="text/template">
     <div v-bind:class="{'sidebar-content': 1, 'bg-white': selectedPlace, 'bg-secondary': !selectedPlace}">
