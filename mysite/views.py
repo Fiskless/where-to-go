@@ -19,7 +19,7 @@ def show_main_page(request):
             },
             "properties": {
                 "title": place.title,
-                "placeId": place.place_id,
+                "placeId": place.slug,
                 "detailsUrl": reverse("place-page", args=[place.id])
             }
         }

@@ -5,26 +5,26 @@ from tinymce.models import HTMLField
 class Place(models.Model):
 
     title = models.CharField('Название места', max_length=200)
-    place_id = models.CharField('Уникальный идентификатор локации', max_length=100, null=True)
-    description_short = models.CharField('Короткое описание', max_length=300)
-    description_long = HTMLField('Длинное описание')
+    slug = models.CharField('Уникальный идентификатор локации', max_length=100, null=True, unique=True)
+    short_description = models.TextField('Короткое описание', blank=True)
+    long_description = HTMLField('Длинное описание', blank=True)
     lat = models.FloatField('Ширина', max_length=200)
     lon = models.FloatField('Долгота', max_length=200)
 
 
     def __str__(self):
-        return f'{self.title}'
+        return self.title
 
 
 class Image(models.Model):
     img = models.ImageField('Картинка')
     picture_number = models.IntegerField('Номер картинки по порядку', null=True, blank=True)
-    place = models.ForeignKey(Place, verbose_name='Место', on_delete=models.CASCADE)
-    my_order = models.PositiveIntegerField(default=0, blank=False, null=False)
+    place = models.ForeignKey(Place, related_name='place_images', verbose_name='Место', on_delete=models.CASCADE)
+    order = models.PositiveIntegerField('Порядковый номер картинки', default=0)
 
     class Meta:
-        ordering = ["my_order"]
+        ordering = ["order"]
 
 
     def __str__(self):
-        return f'{self.place}'
+        return self.place.title

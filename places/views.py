@@ -5,23 +5,23 @@ from .models import Place
 # Create your views here.
 
 
-def show_place_page(request, post_id):
+def show_place_page(request, place_id):
 
-    place =get_object_or_404(Place, id=post_id)
+    place =get_object_or_404(Place, id=place_id)
 
     images_url = []
-    for image in place.image_set.all():
+    for image in place.place_images.all():
         image_url = image.img.url
         images_url.append(image_url)
 
     place_data = {
         "title": place.title,
-        "imgs":images_url,
-        "description_short": place.description_short,
-        "description_long": place.description_long,
+        "imgs": images_url,
+        "description_short": place.short_description,
+        "description_long": place.long_description,
         "coordinates": {
-            "lat":place.lat,
-            "lng":place.lon
+            "lat": place.lat,
+            "lng": place.lon
         }
     }
 

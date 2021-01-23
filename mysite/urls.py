@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import show_main_page
 from places.views import show_place_page
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -26,9 +26,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', show_main_page),
-    path('places/<int:post_id>/', show_place_page, name = "place-page"),
+    path('places/<int:place_id>/', show_place_page, name="place-page"),
     path('tinymce/', include('tinymce.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-urlpatterns += staticfiles_urlpatterns()
-# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

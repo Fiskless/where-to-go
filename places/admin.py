@@ -9,7 +9,7 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Image
     extra = 0
     readonly_fields = ['get_preview']
-    fields = ('my_order', 'img', 'get_preview', 'place')
+    fields = ('order', 'img', 'get_preview', 'place')
 
     def get_preview(self, obj):
 
