@@ -29,6 +29,7 @@ def show_main_page(request):
         "features": data
     }
 
+
     return render(request, 'main_page.html', context={"data":places_dict})
 
 
