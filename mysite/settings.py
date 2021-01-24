@@ -138,7 +138,7 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE")
 

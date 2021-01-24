@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from places.models import Place
-from django.http import HttpResponseRedirect
 from django.urls import reverse
-import json
+
 
 
 def show_main_page(request):
@@ -24,9 +23,12 @@ def show_main_page(request):
             }
         }
         data.append(dict_for_place)
-    places_list=json.dumps(data, indent= 2, ensure_ascii=True, default=str)
 
-    return render(request, 'main_page.html', context={"data":places_list})
+    places_dict = {
+        "type": "FeatureCollection",
+        "features": data
+    }
 
+    return render(request, 'main_page.html', context={"data":places_dict})
 
 
