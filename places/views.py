@@ -10,7 +10,7 @@ def show_place_page(request, place_id):
 
     images_url = [image.img.url for image in place.images.all()]
 
-    place_data = {
+    context = {
         "title": place.title,
         "imgs": images_url,
         "description_short": place.short_description,
@@ -21,6 +21,6 @@ def show_place_page(request, place_id):
         }
     }
 
-    return JsonResponse(place_data,
+    return JsonResponse(context,
                         safe=False,
                         json_dumps_params={'ensure_ascii': False, 'indent': 2})

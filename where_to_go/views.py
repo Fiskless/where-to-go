@@ -4,12 +4,12 @@ from django.urls import reverse
 
 
 def show_main_page(request):
-    data = []
+    place_features = []
     places = Place.objects.all()
 
     for place in places:
 
-        dict_for_place = {
+        place_serialized = {
             "type": "Feature",
             "geometry": {
                 "type": "Point",
@@ -21,11 +21,11 @@ def show_main_page(request):
                 "detailsUrl": reverse("place-page", args=[place.id])
             }
         }
-        data.append(dict_for_place)
+        place_features.append(place_serialized)
 
-    places_dict = {
+    places_serialized = {
         "type": "FeatureCollection",
-        "features": data
+        "features": place_features
     }
 
-    return render(request, 'main_page.html', context={"data": places_dict})
+    return render(request, 'main_page.html', context={"data": places_serialized})
