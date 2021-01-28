@@ -14,10 +14,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Image',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('img', models.ImageField(upload_to='', verbose_name='Картинка')),
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
+                ('img', models.ImageField(upload_to='',
+                                          verbose_name='Картинка')),
                 ('picture_number', models.IntegerField(verbose_name='Номер картинки по порядку')),
-                ('place', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='places.place', verbose_name='Место')),
+                ('place', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                            to='places.place', verbose_name='Место')),
             ],
         ),
     ]

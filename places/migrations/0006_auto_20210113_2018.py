@@ -22,6 +22,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='image',
             name='picture_number',
-            field=models.IntegerField(blank=True, null=True, verbose_name='Номер картинки по порядку'),
+            field=models.IntegerField(blank=True,
+                                      null=True,
+                                      verbose_name='Номер картинки по порядку'
+                                      ),
         ),
     ]

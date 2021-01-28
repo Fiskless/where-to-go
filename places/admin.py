@@ -5,7 +5,9 @@ from adminsortable2.admin import SortableInlineAdminMixin
 
 # Register your models here.
 
+
 class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
+
     model = Image
     extra = 0
     readonly_fields = ['get_preview']

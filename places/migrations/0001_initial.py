@@ -14,12 +14,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Place',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=200, verbose_name='Название места')),
-                ('description_short', models.CharField(max_length=200, verbose_name='Короткое описание')),
-                ('description_long', models.TextField(verbose_name='Длинное описание')),
-                ('lat', models.FloatField(max_length=200, verbose_name='Ширина')),
-                ('lon', models.FloatField(max_length=200, verbose_name='Долгота')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False,
+                                        verbose_name='ID')),
+                ('title', models.CharField(max_length=200,
+                                           verbose_name='Название места')),
+                ('description_short', models.CharField(
+                    max_length=200,
+                    verbose_name='Короткое описание')),
+                ('description_long',
+                 models.TextField(verbose_name='Длинное описание')),
+                ('lat', models.FloatField(max_length=200,
+                                          verbose_name='Ширина')),
+                ('lon', models.FloatField(max_length=200,
+                                          verbose_name='Долгота')),
             ],
         ),
     ]

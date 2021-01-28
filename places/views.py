@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.http.response import JsonResponse
 from django.shortcuts import get_object_or_404
 from .models import Place
@@ -7,7 +6,7 @@ from .models import Place
 
 def show_place_page(request, place_id):
 
-    place =get_object_or_404(Place, id=place_id)
+    place = get_object_or_404(Place, id=place_id)
 
     images_url = []
     for image in place.place_images.all():

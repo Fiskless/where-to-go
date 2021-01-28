@@ -3,7 +3,6 @@ from places.models import Place
 from django.urls import reverse
 
 
-
 def show_main_page(request):
     data = []
     places = Place.objects.all()
@@ -29,7 +28,4 @@ def show_main_page(request):
         "features": data
     }
 
-
-    return render(request, 'main_page.html', context={"data":places_dict})
-
-
+    return render(request, 'main_page.html', context={"data": places_dict})
