@@ -1,5 +1,5 @@
 """
-WSGI config for mysite project.
+WSGI config for where_to_go project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 from environs import Env
 env = Env()
 env.read_env()
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'where_to_go.settings')
 project_folder = os.path.expanduser('~/PycharmProjects/Github projects/where-to-go')
 load_dotenv(os.path.join(project_folder, '.env'))
 
