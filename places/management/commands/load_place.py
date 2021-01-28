@@ -25,7 +25,7 @@ class Command(BaseCommand):
             response_1.raise_for_status()
             image = Image.open(BytesIO(response_1.content))
             image.save(f"media/{place_data['imgs'][picture_index].split('/')[-1]}", save=True)
-            new_image = new_place.place_images.create()
+            new_image = new_place.images.create()
             new_image.img = f"{place_data['imgs'][picture_index].split('/')[-1]}"
             new_image.save()
 
