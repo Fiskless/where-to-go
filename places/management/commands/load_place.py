@@ -9,24 +9,26 @@ class Command(BaseCommand):
     help = 'This command allow to add places on the map'
 
     def handle(self, *args, **options):
-        response = requests.get(f"{options['link']}")
-        response.raise_for_status()
-        place_data = response.json()
-        new_place, created = Place.objects.get_or_create(
-            title=place_data['title'],
-            short_description=place_data['description_short'],
-            long_description=place_data['description_long'],
-            lat=place_data['coordinates']['lat'],
-            lon=place_data['coordinates']['lng']
+        place_response = requests.get(f"{options['link']}")
+        place_response.raise_for_status()
+        raw_place = place_response.json()
+        place, created = Place.objects.get_or_create(
+            title=raw_place['title'],
+            defaults={
+                'short_description': raw_place['description_short'],
+                'long_description': raw_place['description_long'],
+                'lat': raw_place['coordinates']['lat'],
+                'lon': raw_place['coordinates']['lng']
+            }
         )
 
-        for picture_index, picture_url in enumerate(place_data['imgs']):
-            response_1 = requests.get(place_data['imgs'][picture_index])
-            response_1.raise_for_status()
-            image = Image.open(BytesIO(response_1.content))
-            image.save(f"media/{place_data['imgs'][picture_index].split('/')[-1]}", save=True)
-            new_image = new_place.images.create()
-            new_image.img = f"{place_data['imgs'][picture_index].split('/')[-1]}"
+        for picture_index, picture_url in enumerate(raw_place['imgs']):
+            picture_response = requests.get(raw_place['imgs'][picture_index])
+            picture_response.raise_for_status()
+            image = Image.open(BytesIO(picture_response.content))
+            image.save(f"media/{raw_place['imgs'][picture_index].split('/')[-1]}", save=True)
+            new_image = place.images.create()
+            new_image.img = f"{raw_place['imgs'][picture_index].split('/')[-1]}"
             new_image.save()
 
     def add_arguments(self, parser):
