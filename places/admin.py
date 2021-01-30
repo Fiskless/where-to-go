@@ -2,6 +2,7 @@ from django.contrib import admin
 from places.models import Place, Image
 from adminsortable2.admin import SortableInlineAdminMixin
 from django.utils.html import format_html
+import traceback
 
 
 class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
@@ -13,10 +14,13 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
 
     def get_preview(self, obj):
 
-        return format_html('<img src="{}" height={} />',
-                           obj.img.url,
-                           200,
-                           )
+        try:
+            return format_html('<img src="{}" height={} />',
+                               obj.img.url,
+                               200,
+                               )
+        except ValueError:
+            return "There will be a preview when you choose file"
 
 
 @admin.register(Place)
