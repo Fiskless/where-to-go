@@ -28,4 +28,6 @@ def show_main_page(request):
         "features": place_features
     }
 
-    return render(request, 'main_page.html', context={"places": places_serialized})
+    return render(request,
+                  'main_page.html',
+                  context={"places": places_serialized})

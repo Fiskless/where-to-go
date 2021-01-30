@@ -2,7 +2,6 @@ from django.contrib import admin
 from places.models import Place, Image
 from adminsortable2.admin import SortableInlineAdminMixin
 from django.utils.html import format_html
-import traceback
 
 
 class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
