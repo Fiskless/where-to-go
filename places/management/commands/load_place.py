@@ -3,6 +3,7 @@ from places.models import Place
 import requests
 from PIL import Image
 from io import BytesIO
+from urllib.parse import urlparse, unquote
 
 
 class Command(BaseCommand):
@@ -22,14 +23,22 @@ class Command(BaseCommand):
             }
         )
 
-        for picture_index, picture_url in enumerate(raw_place['imgs']):
-            picture_response = requests.get(raw_place['imgs'][picture_index])
+        for picture_url in raw_place['imgs']:
+            picture_response = requests.get(picture_url)
             picture_response.raise_for_status()
             image = Image.open(BytesIO(picture_response.content))
-            image.save(f"media/{raw_place['imgs'][picture_index].split('/')[-1]}", save=True)
-            new_image = place.images.create()
-            new_image.img = f"{raw_place['imgs'][picture_index].split('/')[-1]}"
-            new_image.save()
+            image_name = urlparse(picture_url).path.split('/')[-1]
+            image.save(f"media/{image_name}", save=True)
+            new_image = place.images.create(img=image_name)
+
+    # >> > u = urlparse(
+    #     "https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/media/79403aa7fa5d1d2e06eabe8827e8c96e.jpg")
+    # >> > u
+    # ParseResult(scheme='https', netloc='raw.githubusercontent.com',
+    #             path='/devmanorg/where-to-go-places/master/media/79403aa7fa5d1d2e06eabe8827e8c96e.jpg', params='',
+    #             query='', fragment='')
+    # >> > unquote(u.path.split('/')[-1])
+    # '79403aa7fa5d1d2e06eabe8827e8c96e.jpg'
 
     def add_arguments(self, parser):
         parser.add_argument(
