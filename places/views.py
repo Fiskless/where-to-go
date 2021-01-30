@@ -8,11 +8,11 @@ def show_place_page(request, place_id):
 
     place = get_object_or_404(Place, id=place_id)
 
-    images_url = [image.img.url for image in place.images.all()]
+    images_urls = [image.img.url for image in place.images.all()]
 
     context = {
         "title": place.title,
-        "imgs": images_url,
+        "imgs": images_urls,
         "description_short": place.short_description,
         "description_long": place.long_description,
         "coordinates": {
