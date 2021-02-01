@@ -13,13 +13,17 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
 
     def get_preview(self, obj):
 
-        try:
-            return format_html('<img src="{}" height={} />',
-                               obj.img.url,
-                               200,
-                               )
-        except ValueError:
+        if not obj.img:
             return "There will be a preview when you choose file"
+
+        return format_html('<img src="{}" height={} />',
+                           obj.img.url,
+                           200,
+                           )
+
+
+
+
 
 
 @admin.register(Place)
