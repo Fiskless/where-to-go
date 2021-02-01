@@ -4,6 +4,7 @@ import requests
 from PIL import Image
 from io import BytesIO
 from urllib.parse import urlparse, unquote
+import os
 
 
 class Command(BaseCommand):
@@ -28,7 +29,7 @@ class Command(BaseCommand):
             picture_response.raise_for_status()
             image = Image.open(BytesIO(picture_response.content))
             image_path = urlparse(picture_url).path
-            image_name = unquote(image_path.split('/')[-1])
+            image_name = unquote(os.path.split(image_path)[1])
             image.save(f"media/{image_name}")
             place.images.create(img=image_name)
 
